@@ -1,4 +1,16 @@
+#讀取檔案
 products = [] #大清單
+with open('products.csv', 'r', encoding = 'utf-8') as f:
+    for line in f:
+        if '商品,價格' in line:
+            continue
+        s = line.strip().split(',') #字串切割，以逗點分
+        name = s[0]
+        price = s[1]
+        #name, price = line.strip().split(',')
+        products.append([name, price])
+print(products)
+
 while True:
     name = input('請輸入商品名稱: ')
     if name == 'q': #quit
@@ -8,9 +20,9 @@ while True:
     p.append(name)
     p.append(price) #price is str
     price = int(price)
-    # p = [name, price]
+    #p = [name, price]
     products.append(p)
-    # products.append([name, price])
+    #products.append([name, price])
 
 for p in products:
     print(p[0], '的價格是', p[1])
